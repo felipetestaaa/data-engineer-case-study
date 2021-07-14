@@ -4,35 +4,43 @@
 - Não se preocupe em responder todos os pontos do desafio. Queremos ver até que ponto você consegue se aprofundar :)
 
 ## Case Study
-### Overview
+### Contexto Geral
 Nós, da empresa **TupiCrypto**, temos um projeto onde iremos construir uma plataforma para comercializar fotos e cartões postais dos principais pontos turísticos brasileiros como Non-fungible tokens (NFTs). Um NFT é um ativo digital que representa objetos do mundo real, como arte, música, fotos, itens de jogos e vídeos. Eles são comprados e vendidos online, frequentemente com criptomoeda, e são baseados na tecnologia de Blockchain, como Etherium. Para maiores informações podem visitar esse [link](https://www.forbes.com/advisor/investing/nft-non-fungible-token/). A comercialização dos NFTs está crescendo muito nos ultimos anos e um exemplo de sucesso são os [CryptoPunks](https://www.moneytimes.com.br/o-que-sao-cryptopunks-e-por-que-estao-bombando-no-mundo-artistico-dos-tokens-nfts/), onde um NFT foi vendido por 650 ETH (equivalente a US$ 1,24 milhões de dólares). E nós da TupiCrypto queremos surfar essa onda junto no mercado aqui pelas terras tupiniquins.
 
+Você foi convocado pelo líder do time de Analytics para ajudar a coletar algumas informações para a construção de um relatorio solicitado pelo CEO da **TupiCrypto**. Nesse relatório que será construido pelo squad de Analytics necessitará da cotação de duas criptomoedas em especifico (Ethereum e Bitcoin) em Doláres (USD), Reais (BRL) e Euro (EUR).
+
+Como a empresa ainda é nova não existe nenhum padrão de conjunto de tecnologias que a empresa/área utiliza para suas aplicações e projetos (Tech Stack), como um data warehouse, uma ferramenta de ETL etc. Em um papo com o líder de tecnologia você também propos que após o projeto da analise Ad-Hoc solicitado pelo squad de Analytics você irá sugerir um stack de dados para a empresa **TupiCryto**. 
+
 ## Desafio
+### Parte 1 - Mão na Massa - Relatório do time de Analytics
+Devido a urgência do relatorio para uma tomada de decisão importante você decidiu começar pelo projeto com o squad de Analytics. Para isso, você montou algumas perguntas para que possa conseguir a desenvolvero que é preciso:
 
-### Parte 1 - Mão na massa
-Nesta etapa, você participará de um projeto juntamente com o squad de Analytics a desenvoler uma análise Ad-Hoc para um relatorio solicitado pelo CEO da **TupiCrypto**. Esse relatório que será gerado pelo squad de Analytics necessitará da cotação de duas criptomoedas em especifico (Ethereum e Bitcoin) em Doláres (USD), Reais (BRL) e Euro (EUR). Para isso, foi sugerida a captura dos dados a partir de uma API Gratuita chamada [Coingecko](https://www.coingecko.com/en/api#explore-api). 
+##### Qual o formato da entrega (csv, banco de dados, planilha etc)?
+Como é uma análise sazonal vamos precisar acompanhar essas atualizações dirariamente. E a sugestão é que os dados sejam armazenados no [Google Sheets](https://www.google.com/sheets/about/) e que sejam atualizados diariamente antes das 8h da manhã, horário de brasilia (GMT-3). O arquivo no Google Sheets deverá ser público e conter informações somente a partir do dia **01-01-2021**.
 
-Para te ajudar, segue os requirements para este projeto.
-
-- No final deve-se compartilhar um .CSV contendo exatamente a schema solicitada pelo time de Analytics.
-- Esse arquivo deverá conter informações somente a partir do dia **01-01-2021**.
-- Segue abaixo a schema solicitada pelo time de Analytics.
-
-#### *Arquivo .CSV a ser construído*
+Conforme solicitado pelo squad de Analytics você precisará coletar as informações da cotação de duas criptomoedas em especifico (Ethereum e Bitcoin) em Doláres (USD), Reais (BRL) e Euro (EUR). Segue o exemplo da schema da tabela solicitada:
+##### *Colunas do Google Sheets*
     - id
     - symbol
     - name
-    - date
+    - snapshot_date
     - current_price_usd
     - current_price_eur
     - current_price_brl
 
-#### O que você deve entregar nesta primeira etapa?
-1) Um repositorio público em qualquer provedor Git, como GitHub, BitBucket etc. Contendo o código necessário para executar a tarefa e salvar o arquivo solicitado.
+Para maiores informações de como realizar uma inserção no Google Sheets via API pode-se seguir a seguinte [referência](https://www.twilio.com/blog/2017/02/an-easy-way-to-read-and-write-to-a-google-spreadsheet-in-python.html).
+**ATENÇÃO - Não compartilhe Credenciais e/ou Service Accounts no repositorio.**
+
+##### Qual API podemos utilizar para coletar as informações?
+Deve-se coletar os dados requeridos através de uma API Gratuita chamada [Coingecko](https://www.coingecko.com/en/api#explore-api).
+
+##### Qual tecnologia usar para realizar o ETL?
+Como a **TupiCrypto** ainda não possui nenhuma estrutura definida do stack de dados e devido a urgência da necessidade do relatorio você sugeriu que esse pipeline de dados seja feito usando o [Airflow](https://airflow.apache.org/). O Airflow é uma ferramenta de orquestração e monitoramento de workflows, porém na comunidade é usado também como uma ferramenta completa de ETL (orquestração, monitoramento e execução do ETL). Neste [post](https://towardsdatascience.com/getting-started-with-airflow-using-docker-cd8b44dbff98) o autor explora como iniciar com o Airflow e os passos para criar sua primeira DAG, caso seja seu primeiro contato com o Airflow.
+
+O objetivo desta etapa é que você desenvolva uma DAG para executar, scheduling e monitoramento do pipeline de dados. Fique à vontade para escolher qual linguagem utilizar para construir a DAG no Airflow. No final, o arquivo contendo o codigo deverá ser compartilhado no repositorio em algum provedor Git de sua escolha como (GitHub, BitBuket etc).
 
 ### Parte 2 - Teórica
-
-Desenhar um tech stach de dados completo para receber informações de dados das seguintes schemas e com os seguintes requirements:
+Desenhar um tech stach de dados (conjunto de tecnologias que uma organização/área utiliza para suas aplicações e projetos)  para receber informações de dados das seguintes schemas e com os seguintes requirements:
 
 Desenho do Stack completo proposto por você que você deverá mostrar a sua solução para o problema proposto. Segue uma imagem exemplo encontrado no [link](https://blog.indicium.tech/aproximando-os-dados-dos-analistas-etl-elt/):
 ![Exemplo de stack](https://blog.indicium.tech/content/images/2021/05/indicium-blog-exemplo-de-pipeline-de-dados-usando-elt.png)
